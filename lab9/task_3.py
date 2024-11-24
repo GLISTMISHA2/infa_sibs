@@ -16,11 +16,15 @@ tmap = []
 x = 0
 y = 0
 minlen = 1000
+
 count = int(input("Количество сокровищ: \n"))
 print("Координаты сокровищ: ")
+
 for i in range(count):
     tmap.append(input().split())
+    
 a = input("Координаты Александра: \n").split()
+
 for i in tmap:
     k = ((int(i[0])-int(a[0]))**2 + (int(i[1])-int(a[1]))**2)**0.5
     if k < minlen:

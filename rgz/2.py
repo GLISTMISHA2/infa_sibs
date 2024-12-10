@@ -1,7 +1,6 @@
 import PySimpleGUI as sg
 import random
 
-# Настройки темы и макета
 sg.theme("DarkBlue")
 layout = [
     [sg.Text("Имя игрока:", font="Arial 20"), sg.Input(font="Arial 20", size=(20, 1), key="player_name")],
@@ -14,10 +13,8 @@ layout = [
     [sg.Text("", font="Arial 20", key="score", size=(60, 2))]
 ]
 
-# Создание окна с увеличенным размером
 window = sg.Window("Камень-ножницы-бумага", layout, size=(900, 700))
 
-# Переменные для хранения результатов
 player_score = 0
 computer_score = 0
 rounds_played = 0

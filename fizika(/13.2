@@ -1,0 +1,27 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Параметры
+beta = 0.5  # Коэффициент затухания
+omega_0 = 5  # Собственная частота
+omega_d = np.sqrt(omega_0**2 - beta**2)  # Частота затухающего колебания
+A = 1  # Амплитуда
+phi = 0  # Начальная фаза
+T = 2 * np.pi / omega_d  # Период затухающих колебаний
+
+# Время (в пределах двух периодов)
+t = np.linspace(0, 2 * T, 1000)  # Время в секундах
+
+# Уравнение затухающих колебаний
+x = A * np.exp(-beta * t) * np.cos(omega_d * t + phi)
+
+# Построение графика
+plt.plot(t, x, label="Смещение, x(t)", color="blue")
+plt.axvline(T, color="green", linestyle="--", label="Один период (T)")
+plt.axvline(2 * T, color="green", linestyle="--", label="Два периода (2T)")
+plt.title("Затухающие колебания пружинного маятника")
+plt.xlabel("Время, t (с)")
+plt.ylabel("Смещение, x(t) (м)")
+plt.grid(True)
+plt.legend()
+plt.show()

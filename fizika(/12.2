@@ -1,0 +1,59 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Параметры колебательного контура
+C = 0.2e-6  # Емкость, Ф
+L = 0.2     # Индуктивность, Гн
+Q0 = 1e-6   # Максимальный заряд, Кл
+
+# Частота и период колебаний
+omega = 1 / np.sqrt(L * C)  # Циклическая частота
+T = 2 * np.pi / omega       # Период колебаний
+
+# Время (в пределах двух периодов)
+t = np.linspace(0, 2 * T, 1000)  # Время в секундах
+
+# Аналитическое решение для заряда, тока и ЭДС
+q = Q0 * np.cos(omega * t)  # Заряд на конденсаторе
+i = -Q0 * omega * np.sin(omega * t)  # Ток в цепи
+emf = -L * (-Q0 * omega**2 * np.cos(omega * t))  # ЭДС индукции
+
+# Построение графиков
+plt.figure(figsize=(12, 10))
+
+# Первый график: заряд на конденсаторе
+plt.subplot(3, 1, 1)
+plt.plot(t, q, label="Заряд, q(t)", color="blue")
+plt.axvline(T, color="green", linestyle="--", label="Один период (T)")
+plt.axvline(2 * T, color="green", linestyle="--", label="Два периода (2T)")
+plt.title("Заряд на обкладках конденсатора")
+plt.xlabel("Время, t (с)")
+plt.ylabel("Заряд, q (Кл)")
+plt.grid(True)
+plt.legend()
+
+# Второй график: ток в цепи
+plt.subplot(3, 1, 2)
+plt.plot(t, i, label="Ток, i(t)", color="red")
+plt.axvline(T, color="green", linestyle="--", label="Один период (T)")
+plt.axvline(2 * T, color="green", linestyle="--", label="Два периода (2T)")
+plt.title("Ток в колебательном контуре")
+plt.xlabel("Время, t (с)")
+plt.ylabel("Ток, i (А)")
+plt.grid(True)
+plt.legend()
+
+# Третий график: ЭДС индукции
+plt.subplot(3, 1, 3)
+plt.plot(t, emf, label="ЭДС индукции, E(t)", color="purple")
+plt.axvline(T, color="green", linestyle="--", label="Один период (T)")
+plt.axvline(2 * T, color="green", linestyle="--", label="Два периода (2T)")
+plt.title("ЭДС индукции в контуре")
+plt.xlabel("Время, t (с)")
+plt.ylabel("ЭДС, E (В)")
+plt.grid(True)
+plt.legend()
+
+# Отображение графиков
+plt.tight_layout()
+plt.show()
